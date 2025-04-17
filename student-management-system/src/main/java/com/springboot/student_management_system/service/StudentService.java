@@ -2,6 +2,7 @@ package com.springboot.student_management_system.service;
 
 import com.springboot.student_management_system.dto.StudentDTO;
 import com.springboot.student_management_system.dto.request.StudentSaveRequestDTO;
+import com.springboot.student_management_system.dto.request.StudentUpdateRequestDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,4 +12,10 @@ public interface StudentService {
     List<StudentDTO> getAllStudents();
 
     String studentCreate(StudentSaveRequestDTO studentSaveRequestDTO);
+
+    String studentUpdate(StudentUpdateRequestDTO studentUpdateRequestDTO);
+
+    String studentDelete(int id);
+
+    StudentDTO studentGet(int id);
 }

@@ -2,6 +2,7 @@ package com.springboot.student_management_system.controller;
 
 import com.springboot.student_management_system.dto.StudentDTO;
 import com.springboot.student_management_system.dto.request.StudentSaveRequestDTO;
+import com.springboot.student_management_system.dto.request.StudentUpdateRequestDTO;
 import com.springboot.student_management_system.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
@@ -34,5 +35,27 @@ public class StudentController {
         }else {
             return created;
         }
+    }
+
+    @PutMapping(path = {"/update"})
+    public String updatestudent(@Valid @RequestBody StudentUpdateRequestDTO studentUpdateRequestDTO, BindingResult result){
+        String updated = studentService.studentUpdate(studentUpdateRequestDTO);
+        if(result.hasErrors()){
+            return "has validation issues";
+        }else {
+            return updated;
+        }
+    }
+
+    @DeleteMapping(path = {"/delete"}, params = {"id"})
+    public String deleteStudent(@RequestParam(value = "id") int id){
+        String deleted = studentService.studentDelete(id);
+        return deleted;
+    }
+
+    @GetMapping(path = {"/get-student"}, params = {"id"})
+    public StudentDTO getStudent(@RequestParam(value = "id") int id){
+        StudentDTO std = studentService.studentGet(id);
+        return std;
     }
 }

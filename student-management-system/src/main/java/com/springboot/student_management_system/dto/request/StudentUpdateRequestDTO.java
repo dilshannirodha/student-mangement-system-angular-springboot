@@ -1,5 +1,6 @@
 package com.springboot.student_management_system.dto.request;
 
+import jakarta.persistence.Access;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class StudentSaveRequestDTO {
+public class StudentUpdateRequestDTO {
     private int id;
     @NotEmpty(message = "Student first name should not be empty")
     private String firstName;
