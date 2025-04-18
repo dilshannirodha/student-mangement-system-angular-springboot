@@ -1,0 +1,56 @@
+<!-- src/app/components/add-student/add-student.component.html -->
+
+<div class="max-w-md mx-auto p-6 bg-white rounded shadow">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Add New Student</h2>
+  
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">ID</label>
+        <input
+          formControlName="id"
+          class="w-full mt-1 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
+          placeholder="Enter Student ID"
+        />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium text-gray-700">First Name</label>
+        <input
+          formControlName="firstName"
+          class="w-full mt-1 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
+          placeholder="Enter First Name"
+        />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Last Name</label>
+        <input
+          formControlName="lastName"
+          class="w-full mt-1 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
+          placeholder="Enter Last Name"
+        />
+      </div>
+  
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          class="w-full mt-1 px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-500"
+          placeholder="Enter Email"
+        />
+      </div>
+  
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+      >
+        Submit
+      </button>
+  
+      <div class="mt-2 text-sm text-center text-green-600" *ngIf="message">
+        {{ message }}
+      </div>
+    </form>
+  </div>
+  

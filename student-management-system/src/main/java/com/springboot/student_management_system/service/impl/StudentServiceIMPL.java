@@ -37,11 +37,11 @@ public class StudentServiceIMPL implements StudentService {
     public String studentCreate(StudentSaveRequestDTO studentSaveRequestDTO) {
         Student student = modelMapper.map(studentSaveRequestDTO, Student.class);
 
-        if (studentRepo.existsByEmailEquals(student.getEmail())) {
+        if (studentRepo.existsByEmailEquals(studentSaveRequestDTO.getEmail())) {
             return "email already exists!";
         } else {
             studentRepo.save(student);
-            return student.getFirstName() + " " + student.getLastName() + " saved";
+            return studentSaveRequestDTO.getFirstName() + " " + studentSaveRequestDTO.getLastName() + " saved";
         }
     }
 
@@ -61,7 +61,7 @@ public class StudentServiceIMPL implements StudentService {
     }
 
     @Override
-    public String studentDelete(int id) {
+    public String studentDelete(String id) {
         Optional<Student> studentOpt = studentRepo.findById(id);
 
         if(studentOpt.isPresent()){
@@ -75,7 +75,7 @@ public class StudentServiceIMPL implements StudentService {
     }
 
     @Override
-    public StudentDTO studentGet(int id) {
+    public StudentDTO studentGet(String id) {
         Optional<Student> existingStudentOpt = studentRepo.findById(id);
         if(existingStudentOpt.isPresent()){
             Student existingStudent = existingStudentOpt.get();

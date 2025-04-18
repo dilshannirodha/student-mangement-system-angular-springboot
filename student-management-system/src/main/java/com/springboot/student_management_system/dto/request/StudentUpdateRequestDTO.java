@@ -10,11 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class StudentUpdateRequestDTO {
-    private int id;
-    @NotEmpty(message = "Student first name should not be empty")
+    private String id;
     private String firstName;
-    @NotEmpty(message = "Student last name should not be empty")
     private String lastName;
-    @NotEmpty(message = "Student email should not be empty")
     private String email;
 }

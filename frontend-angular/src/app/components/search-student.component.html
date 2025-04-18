@@ -1,0 +1,107 @@
+
+    <div class="flex items-center space-x-2 mb-3">
+      <input
+        type="text"
+        [(ngModel)]="studentId"
+        placeholder="Enter Student ID"
+        class="border px-3 py-2 rounded w-full sm:w-auto"
+      />
+      <button
+        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        (click)="searchStudent()"
+      >
+        Search
+      </button>
+    </div>
+    <p class="text-red-500 text-sm">{{ message }}</p>
+ 
+  
+  <div *ngIf="showResult" class="bg-white  rounded p-4">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Search Result</h2>
+  
+    <table *ngIf="searchedStudent" class="min-w-full bg-white rounded mb-4">
+      <thead class="bg-gray-100 border-b border-gray-300">
+        <tr>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">ID</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">First Name</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Last Name</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Email</th>
+          <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b hover:bg-gray-50">
+          <td class="px-4 py-2 text-sm text-gray-900">{{ searchedStudent.id }}</td>
+  
+          <td class="px-4 py-2">
+            <ng-container *ngIf="editingStudentId !== searchedStudent.id; else editFirstName">
+              {{ searchedStudent.firstName }}
+            </ng-container>
+            <ng-template #editFirstName>
+              <input [(ngModel)]="editedStudent.firstName" class="w-full px-2 py-1 border rounded" />
+            </ng-template>
+          </td>
+  
+          <td class="px-4 py-2">
+            <ng-container *ngIf="editingStudentId !== searchedStudent.id; else editLastName">
+              {{ searchedStudent.lastName }}
+            </ng-container>
+            <ng-template #editLastName>
+              <input [(ngModel)]="editedStudent.lastName" class="w-full px-2 py-1 border rounded" />
+            </ng-template>
+          </td>
+  
+          <td class="px-4 py-2">
+            <ng-container *ngIf="editingStudentId !== searchedStudent.id; else editEmail">
+              {{ searchedStudent.email }}
+            </ng-container>
+            <ng-template #editEmail>
+              <input [(ngModel)]="editedStudent.email" class="w-full px-2 py-1 border rounded" />
+            </ng-template>
+          </td>
+  
+          <td class="px-4 py-2 flex space-x-2">
+            <ng-container *ngIf="editingStudentId !== searchedStudent.id">
+              <button
+                class="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1 rounded"
+                (click)="startEdit(searchedStudent)"
+              >
+                Update
+              </button>
+              <button
+                class="bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-1 rounded"
+                (click)="deleteStudent(searchedStudent.id)"
+              >
+                Delete
+              </button>
+            </ng-container>
+  
+            <ng-container *ngIf="editingStudentId === searchedStudent.id">
+              <button
+                class="bg-green-500 hover:bg-green-600 text-white text-sm px-3 py-1 rounded"
+                (click)="saveEdit()"
+              >
+                Save
+              </button>
+              <button
+                class="bg-gray-400 hover:bg-gray-500 text-white text-sm px-3 py-1 rounded"
+                (click)="cancelEdit()"
+              >
+                Cancel
+              </button>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="text-right">
+      <button
+        class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded"
+        (click)="ok()"
+      >
+        OK
+      </button>
+    </div>
+  </div>
+  
